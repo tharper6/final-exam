@@ -13,7 +13,9 @@ export const Query = (query: string, values?: any) => {
 }
 
 import books from './queries/books'
+import categories from './queries/categories'
 
 export default{
-    books
+    books,
+    categories
 }

@@ -2,7 +2,6 @@ import {Router} from 'express';
 
 const router = Router();
 
-router.use();
 router.get('/test', async (req, res) => {
     try {
         
