@@ -1,37 +1,27 @@
 import * as React from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import NavBar from './Components/NavBar';
+import Home from './Pages/Home';
+import Details from './Pages/Details';
+import Add from './Pages/Add';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import Edit from './Pages/Edit';
 
-class App extends React.Component<IAppProps, IAppState> {
-
-    constructor(props: IAppProps) {
-        super(props);
-        this.state = {
-            name: null
-        };
-    }
-
-    async componentWillMount() {
-        try {
-            let r = await fetch('/api/hello');
-            let name = await r.json();
-            this.setState({ name });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    render() {
-        return (
-            <main className="container my-5">
-                <h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-            </main>
-        )
-    }
-}
-
-export interface IAppProps { }
-
-export interface IAppState {
-    name: string;
+const App = () => {
+    return(
+        <Router>
+            <NavBar/>
+            <Switch>
+                <Route exact path="/" component={Home}  />
+                <Route exact path="/details/:id" component={Details}  />
+                <Route exact path="/add" component={Add}  />
+                <Route exact path="/login" component={Login}  />
+                <Route exact path="/register" component={Register}  />
+                <Route exact path="/edit/:id" component={Edit}  />
+            </Switch>
+        </Router>
+    )
 }
 
 export default App;
