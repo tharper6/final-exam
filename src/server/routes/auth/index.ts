@@ -1,14 +1,8 @@
 import {Router} from 'express';
+import loginRouter from './login'
 
 const router = Router();
 
-router.get('/test', async (req, res) => {
-    try {
-        
-    } catch (error) {
-        console.log(error);
-        res.status(500).json('You messed up!')
-    }
-});
+router.use('/login', loginRouter)
 
 export default router;

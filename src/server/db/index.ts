@@ -12,10 +12,14 @@ export const Query = (query: string, values?: any) => {
     })
 }
 
-import books from './queries/books'
-import categories from './queries/categories'
+import books from './queries/books';
+import categories from './queries/categories';
+import users from './queries/users';
+import tokens from './queries/tokens'
 
 export default{
     books,
-    categories
+    categories,
+    users,
+    tokens
 }
