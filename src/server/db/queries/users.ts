@@ -1,11 +1,11 @@
-import {Query} from '../index';
+import {Query} from '../../db';
 
-const getEmail = (email: string) => Query('SELECT * FROM users WHERE email = ?', [email]);
-const getId = (id: string) => Query('SELECT * FROM users WHERE id = ?', [id]);
-const insert = (email: string, password: string, name: string) => Query('INSERT INTO users (email, password, name)', [[email, password, name]]);
+const findOneByEmail = (email: string) => Query(`SELECT * FROM users WHERE email = ?`, [email]);
+const findOneById = (id: number) => Query(`SELECT * FROM users WHERE id = ?`, [id]);
+const insert = (email: string, password: string, name: string) => Query('INSERT INTO users (email, password, name) VALUE (?)', [[email, password, name]])
 
 export default {
-    getEmail,
-    getId,
+    findOneByEmail,
+    findOneById,
     insert
 }

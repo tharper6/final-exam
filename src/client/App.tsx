@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import NavBar from './Components/NavBar';
-import Home from './Pages/Home';
-import Details from './Pages/Details';
-import Add from './Pages/Add';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Edit from './Pages/Edit';
+import Home from './pages/Home';
+import Details from './pages/Details';
+import Add from './pages/Add';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Edit from './pages/Edit';
 
 const App = () => {
     return(

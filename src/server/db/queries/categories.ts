@@ -1,9 +1,9 @@
 import {Query} from '../../db';
 
-const getAll = () => Query('SELECT * FROM categories')
-const getOne = (id: number) => Query('SELECT * FROM categories WHERE id = ?', [id])
+const All = () => Query('SELECT * FROM categories')
+const One = (id: number) => Query('SELECT * FROM categories WHERE id = ?', [id])
 
 export default {
-    getAll,
-    getOne
+    All,
+    One
 }

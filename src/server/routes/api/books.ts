@@ -1,12 +1,13 @@
 import {Router} from 'express';
 import db from '../../db'
+import {isAdmin} from '../../middleware/authCheckpoints'
 
 const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        let result = await db.books.getAll();
-        res.json(result)
+        let books = await db.books.All();
+        res.json(books)
     } catch (error) {
         console.log(error);
         res.status(500).json('You messed up!')
@@ -15,38 +16,38 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        let result = await db.books.getOne(req.params.id);
-        res.json(result)
+        let [book]: any = await db.books.One(req.params.id)
+        res.json(book)
     } catch (error) {
         console.log(error);
         res.status(500).json('You messed up!')
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', isAdmin, async (req, res) => {
     try {
-        let result = await db.books.post(req.body.title, req.body.author, req.body.categoryid, req.body.price);
-        res.json(result)
+        let book = await db.books.Post(req.body.title, req.body.author, req.body.categoryid, req.body.price);
+        res.json(book)
     } catch (error) {
         console.log(error);
         res.status(500).json('You messed up!')
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', isAdmin,  async (req, res) => {
     try {
-        let result = await db.books.destroy(req.params.id);
-        res.json(result)
+        let book = await db.books.Delete(req.params.id)
+        res.json('Deleted!')
     } catch (error) {
         console.log(error);
         res.status(500).json('You messed up!')
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', isAdmin, async (req, res) => {
     try {
-        let result = await db.books.update(req.body.title, req.body.author, req.body.categoryid, req.body.price, req.params.id);
-        res.json(result)
+        let book = await db.books.Edit(req.body.title, req.body.author, req.body.categoryid, req.body.price, req.params.id)
+        res.json(book)
     } catch (error) {
         console.log(error);
         res.status(500).json('You messed up!')

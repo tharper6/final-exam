@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-        let categories = await db.categories.getAll();
+        let categories = await db.categories.All();
         res.json(categories)
     } catch (error) {
         console.log(error);
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        let [category]: any = await db.categories.getOne(req.params.id)
+        let [category]: any = await db.categories.One(req.params.id)
         res.json(category)
     } catch (error) {
         console.log(error);

@@ -1,7 +1,7 @@
 import * as passport from 'passport';
 import { RequestHandler } from 'express';
 
-export const tokenCheckpoint = (req: any, res:any, next: any) => {
+export const tokenCheckpoint: RequestHandler = (req:any, res, next) => {
     return passport.authenticate('bearer', { session: false }, (err, user, info) => {
         if(user) req.user = user;
         return next();
